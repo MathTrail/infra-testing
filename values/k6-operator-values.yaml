@@ -1,0 +1,12 @@
+# k6 Operator Helm Values
+# Override defaults for MathTrail local development
+
+manager:
+  # Resource limits for the operator
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 50m
+      memory: 64Mi
