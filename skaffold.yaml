@@ -1,0 +1,15 @@
+﻿apiVersion: skaffold/v4beta12
+kind: Config
+metadata:
+  name: mathtrail-infra-testing
+
+deploy:
+  helm:
+    releases:
+      - name: k6-operator
+        repo: https://MathTrail.github.io/charts/charts
+        remoteChart: k6-operator
+        namespace: mathtrail
+        valuesFiles:
+          - values/k6-operator-values.yaml
+        wait: true
