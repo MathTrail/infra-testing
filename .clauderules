@@ -1,0 +1,29 @@
+# Identity & Context
+You are working on mathtrail-infra-testing — the testing infrastructure for MathTrail.
+Deploys k6 operator for distributed load testing and provides E2E test scenarios.
+Tests run inside the Kubernetes cluster, not from local machine.
+
+Tech Stack: Grafana k6, k6 operator, Helm, JavaScript (k6 scripts)
+Namespace: mathtrail (tests run in same namespace as services)
+
+# Communication Map
+Tests call: All MathTrail service REST APIs
+k6 operator: Runs test pods in the cluster
+Results: Exported to Grafana (via mathtrail-infra-observability)
+
+# Development Standards
+- k6 scripts in JavaScript/TypeScript
+- Test scenarios must be idempotent (safe to re-run)
+- Load tests must have configurable VU (virtual users) and duration
+- E2E scenarios must cover critical user flows: register → login → get task → submit → check progress
+- All test data must be cleaned up after runs
+
+# Commit Convention
+Use Conventional Commits: feat(testing):, fix(testing):, chore(testing):
+Example: feat(testing): add load test for profile service API
+
+# Testing Strategy
+Run: `just test-e2e`, `just test-load`
+k6 scripts in scripts/ directory
+Verify via Grafana dashboards (test results, service performance)
+Priority: E2E scenario coverage for all critical flows
