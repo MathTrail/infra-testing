@@ -12,7 +12,7 @@ else
 fi
 
 echo "Adding MathTrail Helm chart repository..."
-helm repo add mathtrail https://MathTrail.github.io/mathtrail-charts/charts
+helm repo add mathtrail https://MathTrail.github.io/charts/charts
 helm repo update mathtrail
 echo "✅ Helm repo ready"
 ``
