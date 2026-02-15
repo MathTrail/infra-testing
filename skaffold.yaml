@@ -10,6 +10,7 @@ deploy:
         repo: https://MathTrail.github.io/charts/charts
         remoteChart: k6-operator
         namespace: mathtrail
+        createNamespace: true
         valuesFiles:
           - values/k6-operator-values.yaml
         wait: true
