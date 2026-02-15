@@ -3,6 +3,17 @@ kind: Config
 metadata:
   name: mathtrail-infra-testing
 
+build:
+  local:
+    push: true
+  insecureRegistries:
+    - k3d-mathtrail-registry.localhost:5050
+  artifacts:
+    - image: k3d-mathtrail-registry.localhost:5050/ci-runner
+      docker:
+        dockerfile: runner/Dockerfile
+      context: runner
+
 deploy:
   helm:
     releases:
@@ -14,3 +25,5 @@ deploy:
         valuesFiles:
           - values/k6-operator-values.yaml
         wait: true
+      # Note: github-runner is deployed via justfile deploy recipe
+      # to read GITHUB_RUNNER_TOKEN from .env file
