@@ -2,20 +2,21 @@
 
 set shell := ["bash", "-c"]
 
-NAMESPACE := "mathtrail"
+NAMESPACE := "k6-operator-system"
 
-# Deploy k6 operator to the cluster
+# Deploy testing infra (k6) to the cluster
 deploy:
     #!/bin/bash
     set -e
-    echo "� Deploying with Skaffold..."
-    kubectl create namespace {{ NAMESPACE }} 2>/dev/null || true
-    skaffold deploy
+    
+    echo "🚀 Deploying with Skaffold..."
+    skaffold run
+    
     echo ""
     echo "✅ Deployment complete!"
 
-# Remove k6 operator from the cluster
-uninstall:
+# Remove testing infra from the cluster
+delete:
     #!/bin/bash
     set -e
     echo "🗑️  Removing with Skaffold..."

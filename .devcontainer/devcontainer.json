@@ -12,10 +12,11 @@
         "ghcr.io/eitsupi/devcontainer-features/just:0.1.1": {}
     },
     "mounts": [
-        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.kube,target=/home/vscode/.kube,type=bind,consistency=cached"
+        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.kube,target=/home/vscode/.kube-host,type=bind,consistency=cached"
     ],
     "remoteEnv": {
-        "KUBECONFIG": "/home/vscode/.kube/k3d-mathtrail-dev.yaml"
+        "KUBECONFIG": "/home/vscode/.kube/k3d-mathtrail-dev.yaml",
+        "SKAFFOLD_DEFAULT_REPO": "k3d-mathtrail-registry.localhost:5050"
     },
     "customizations": {
         "vscode": {
@@ -26,9 +27,6 @@
                 "redhat.vscode-yaml",
                 "eamodio.gitlens",
                 "sclu1034.justfile",
-                "vscode-icons-team.vscode-icons",
-                "waderyan.gitblame",
-                "donjayamanne.githistory",
                 "Tim-Koehler.helm-intellisense",
                 "anthropic.claude-code"
             ]

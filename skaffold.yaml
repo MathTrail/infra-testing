@@ -1,7 +1,7 @@
 ﻿apiVersion: skaffold/v4beta12
 kind: Config
 metadata:
-  name: mathtrail-infra-testing
+  name: infra-testing
 
 deploy:
   helm:
@@ -9,7 +9,9 @@ deploy:
       - name: k6-operator
         repo: https://MathTrail.github.io/charts/charts
         remoteChart: k6-operator
-        namespace: mathtrail
+        namespace: k6-operator-system
+        createNamespace: true
+        upgradeOnChange: true
         valuesFiles:
           - values/k6-operator-values.yaml
         wait: true
