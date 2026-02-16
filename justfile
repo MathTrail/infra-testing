@@ -2,7 +2,7 @@
 
 set shell := ["bash", "-c"]
 
-NAMESPACE := "mathtrail"
+NAMESPACE := "k6-operator-system"
 
 # Deploy testing infra (k6) to the cluster
 deploy:
@@ -17,7 +17,7 @@ deploy:
     echo "✅ Deployment complete!"
 
 # Remove testing infra from the cluster
-uninstall:
+delete:
     #!/bin/bash
     set -e
     echo "🗑️  Removing with Skaffold..."
