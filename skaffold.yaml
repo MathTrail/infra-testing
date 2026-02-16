@@ -11,6 +11,7 @@ deploy:
         remoteChart: k6-operator
         namespace: k6-operator-system
         createNamespace: true
+        upgradeOnChange: true
         valuesFiles:
           - values/k6-operator-values.yaml
         wait: true

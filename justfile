@@ -10,7 +10,6 @@ deploy:
     set -e
     
     echo "🚀 Deploying with Skaffold..."
-    kubectl create namespace {{ NAMESPACE }} 2>/dev/null || true
     skaffold run
     
     echo ""
