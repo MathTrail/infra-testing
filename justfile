@@ -10,7 +10,6 @@ deploy:
     set -e
 
     echo "🚀 Deploying with Skaffold..."
-    kubectl create namespace {{ NAMESPACE }} --dry-run=client -o yaml | kubectl apply -f -
     skaffold run
 
     echo ""
