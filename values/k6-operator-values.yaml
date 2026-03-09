@@ -1,6 +1,11 @@
 # k6 Operator Helm Values
 # Override defaults for MathTrail local development
 
+namespace:
+  # Namespace creation is handled by Helm via createNamespace: true in skaffold.yaml.
+  # Disabling here prevents conflict when the namespace already exists.
+  create: false
+
 manager:
   # Resource limits for the operator
   resources:

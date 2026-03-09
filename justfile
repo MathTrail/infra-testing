@@ -8,10 +8,10 @@ NAMESPACE := "k6-operator-system"
 deploy:
     #!/bin/bash
     set -e
-    
+
     echo "🚀 Deploying with Skaffold..."
     skaffold run
-    
+
     echo ""
     echo "✅ Deployment complete!"
 
@@ -21,6 +21,7 @@ delete:
     set -e
     echo "🗑️  Removing with Skaffold..."
     skaffold delete
+    kubectl delete namespace {{ NAMESPACE }} --ignore-not-found
     echo ""
     echo "✅ Removal complete!"
 
