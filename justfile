@@ -1,35 +1,17 @@
 # Testing infrastructure deployment commands for MathTrail
+# Deployment is managed exclusively by ArgoCD (mathtrail-k6-operator Application).
 
 set shell := ["bash", "-c"]
 
 NAMESPACE := "k6-operator-system"
 
-# Deploy testing infra (k6) to the cluster
-deploy:
-    #!/bin/bash
-    set -e
+# Trigger ArgoCD sync
+sync:
+    argocd app sync mathtrail-k6-operator
 
-    echo "🚀 Deploying with Skaffold..."
-    skaffold run
-
-    echo ""
-    echo "✅ Deployment complete!"
-
-# Remove testing infra from the cluster
-delete:
-    #!/bin/bash
-    set -e
-    echo "🗑️  Removing with Skaffold..."
-    skaffold delete
-    kubectl delete namespace {{ NAMESPACE }} --ignore-not-found
-    echo ""
-    echo "✅ Removal complete!"
-
-# Show deployment status
+# Show ArgoCD application status
 status:
-    #!/bin/bash
-    echo "📊 k6 operator status:"
-    kubectl get pods -n {{ NAMESPACE }} -l app.kubernetes.io/name=k6-operator 2>/dev/null || echo "  Not deployed"
-    echo ""
-    echo "📋 TestRun resources:"
+    argocd app get mathtrail-k6-operator
+    @echo ""
+    @echo "📋 TestRun resources:"
     kubectl get testrun -n {{ NAMESPACE }} 2>/dev/null || echo "  No test runs found"
